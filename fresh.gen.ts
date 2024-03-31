@@ -4,22 +4,28 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
-import * as $api_joke from "./routes/api/joke.ts";
-import * as $greet_name_ from "./routes/greet/[name].tsx";
+import * as $api_create from "./routes/api/create.ts";
+import * as $api_secret_uuid_ from "./routes/api/secret/[uuid].ts";
 import * as $index from "./routes/index.tsx";
-import * as $Counter from "./islands/Counter.tsx";
+import * as $secret_uuid_ from "./routes/secret/[uuid].tsx";
+import * as $CreateSecret from "./islands/CreateSecret.tsx";
+import * as $FetchSecret from "./islands/FetchSecret.tsx";
+import * as $Log from "./islands/Log.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
-    "./routes/api/joke.ts": $api_joke,
-    "./routes/greet/[name].tsx": $greet_name_,
+    "./routes/api/create.ts": $api_create,
+    "./routes/api/secret/[uuid].ts": $api_secret_uuid_,
     "./routes/index.tsx": $index,
+    "./routes/secret/[uuid].tsx": $secret_uuid_,
   },
   islands: {
-    "./islands/Counter.tsx": $Counter,
+    "./islands/CreateSecret.tsx": $CreateSecret,
+    "./islands/FetchSecret.tsx": $FetchSecret,
+    "./islands/Log.tsx": $Log,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

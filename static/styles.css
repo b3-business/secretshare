@@ -13,6 +13,24 @@ button {
 button, [role="button"] {
   cursor: pointer;
 }
+button {
+  background-color: transparent;
+  padding: 4;
+  margin: 1em;
+  border: 1px solid black;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+textarea {
+  resize: both;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
@@ -26,6 +44,12 @@ img,
 video {
   max-width: 100%;
   height: auto;
+}
+
+a, a:visited {
+  color: black;
+  text-decoration: none;
+  transition: color 0.15s ease;
 }
 
 html {
@@ -43,6 +67,10 @@ html {
 .my-6 {
   margin-bottom: 1.5rem;
   margin-top: 1.5rem;
+}
+.my-8 {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 .text-4xl {
   font-size: 2.25rem;
@@ -68,12 +96,23 @@ html {
   padding-bottom: 2rem;
   padding-top: 2rem;
 }
+.py-4 {
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
 .bg-\[\#86efac\] {
   background-color: #86efac;
+}
+.bg-light-blue {
+  background-color: #60c0ff;
 }
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 .py-6 {
   padding-bottom: 1.5rem;
