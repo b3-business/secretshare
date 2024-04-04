@@ -3,6 +3,8 @@
 type Secret = {
   data: string;
   expiresAt: number;
+  viewCount: number;
+  allowedViews: number;
 };
 
 type UUID = string;
@@ -16,11 +18,16 @@ class Secrets {
     this.secrets = new Map<UUID, Secret>();
   }
 
-  add(secret: string) {
+  add(secret: string, expireIn: number) {
     const uuid = crypto.randomUUID();
+    if (expireIn === -1) {
+      expireIn = EXPIRE_DURATION_DAY;
+    }
     this.secrets.set(uuid, {
       data: secret,
-      expiresAt: Date.now() + EXPIRE_DURATION_DAY,
+      expiresAt: Date.now() + expireIn,
+      viewCount: 0,
+      allowedViews: 1,
     });
     return uuid;
   }
@@ -28,14 +35,17 @@ class Secrets {
   get(uuid: UUID) {
     const secret = this.secrets.get(uuid);
     if (!secret) {
+      console.log(`No secret found with uuid: ${uuid}`);
       return null;
     }
     if (secret.expiresAt < Date.now()) {
+      console.log(`Secret with uuid: ${uuid} has expired and got deleted.`);
       this.secrets.delete(uuid);
       return null;
     }
 
     this.secrets.delete(uuid);
+    console.log(`Secret with uuid: ${uuid} fetched successfully.`);
     return secret.data;
   }
 }

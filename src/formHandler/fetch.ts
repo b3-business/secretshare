@@ -11,12 +11,14 @@ export default async function onClick(
   });
 
   if (response.status >= 400) {
-    lastMessage.value = "Fehler beim Abrufen des Secrets!";
+    lastMessage.value =
+      "Fehler beim Abrufen des Secrets! Entweder ist der Link abgelaufen oder ungültig.";
     return;
   }
 
   const data = await response.json().catch(() =>
-    lastMessage.value = "Fehler beim Abrufen des Secrets!"
+    lastMessage.value =
+      "Fehler beim Abrufen des Secrets! Entweder ist der Link abgelaufen oder ungültig."
   );
   console.log(data);
   if (data && data.secret) {

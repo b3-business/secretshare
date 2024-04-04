@@ -64,6 +64,10 @@ html {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
 .my-6 {
   margin-bottom: 1.5rem;
   margin-top: 1.5rem;
@@ -165,4 +169,13 @@ html {
 }
 .tabular-nums {
   font-variant-numeric: tabular-nums;
+}
+
+#duration {
+  display: flex;
+  justify-content: space-between;
+}
+
+#duration input {
+  width: 6ch;
 }
