@@ -5,6 +5,16 @@ type Secret = {
   expiresAt: number;
   viewCount: number;
   allowedViews: number;
+  hash: string;
+  iv: Uint8Array | undefined;
+};
+
+type SecretGenerationOptions = {
+  secret: string;
+  expireIn: number;
+  allowedViews: number;
+  hash: string;
+  iv: Uint8Array | undefined;
 };
 
 type UUID = string;
@@ -18,16 +28,20 @@ class Secrets {
     this.secrets = new Map<UUID, Secret>();
   }
 
-  add(secret: string, expireIn: number) {
+  add(
+    { secret, expireIn, allowedViews = 1, hash, iv }: SecretGenerationOptions,
+  ) {
     const uuid = crypto.randomUUID();
-    if (expireIn === -1) {
+    if (expireIn < 0) {
       expireIn = EXPIRE_DURATION_DAY;
     }
     this.secrets.set(uuid, {
       data: secret,
       expiresAt: Date.now() + expireIn,
       viewCount: 0,
-      allowedViews: 1,
+      allowedViews: allowedViews,
+      hash: hash,
+      iv: iv,
     });
     return uuid;
   }
@@ -44,9 +58,21 @@ class Secrets {
       return null;
     }
 
-    this.secrets.delete(uuid);
+    if (secret.viewCount++ >= secret.allowedViews) {
+      console.log(
+        `Secret with uuid: ${uuid} has reached the view limit and got deleted.`,
+      );
+      this.secrets.delete(uuid);
+      return null;
+    }
+
     console.log(`Secret with uuid: ${uuid} fetched successfully.`);
-    return secret.data;
+    return {
+      secret: secret.data,
+      hash: secret.hash,
+      iv: secret.iv,
+      viewsLeft: secret.allowedViews - secret.viewCount,
+    };
   }
 }
 

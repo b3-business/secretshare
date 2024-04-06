@@ -13,7 +13,6 @@ export const handler: Handlers = {
     if (!secret) {
       return new Response(null, { status: 404 });
     }
-
-    return new Response(JSON.stringify({ secret }));
+    return new Response(JSON.stringify(secret));
   },
 };
