@@ -28,7 +28,7 @@ export default async function onSubmit(
   let encryptedSecret = secret;
   let iv = undefined;
   let generatedKey = false;
-  let encryptionKey = formData.get("encryptionKey") as string | null;
+  let encryptionKey = formData.get("passphrase") as string | null;
 
   if (formData.get("usePassphrase")) {
     if (!encryptionKey) {

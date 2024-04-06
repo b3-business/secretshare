@@ -20,7 +20,15 @@ export default function FetchSecret(
         onSubmit(ev, props.uuid, props.encryptionKey);
         fetched.value = true;
       }}
+      autocomplete="off"
     >
+      <input
+        autocomplete="false"
+        name="hidden"
+        type="text"
+        style="display:none;"
+      >
+      </input>
       {usePassphrase.value && (
         <label>
           Passphrase:&nbsp;

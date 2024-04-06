@@ -15,7 +15,15 @@ export default function CreateSecret() {
         method="post"
         class="flex flex-col items-center"
         onSubmit={onSubmit}
+        autocomplete="off"
       >
+        <input
+          autocomplete="false"
+          name="hidden"
+          type="text"
+          style="display:none;"
+        >
+        </input>
         <textarea
           rows={10}
           cols={60}
