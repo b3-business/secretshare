@@ -73,6 +73,7 @@ export default function CreateSecret() {
               class="p-2 border-2 border-gray-500 rounded"
               placeholder={"Optional"}
               required
+              autocomplete="off"
             />
           </label>
         )}

@@ -30,24 +30,26 @@ export default async function onSubmit(
   let generatedKey = false;
   let encryptionKey = formData.get("passphrase") as string | null;
 
-  if (formData.get("usePassphrase")) {
+  if (formData.get("usePassphrase") == "on") {
     if (!encryptionKey) {
       lastMessage.value = "Bitte geben Sie ein Passphrase ein!";
       return;
     }
   } else {
     // generate a random key
+    console.log("Generating random key...");
     encryptionKey = btoa(
       String.fromCharCode(...crypto.getRandomValues(new Uint8Array(16))),
     );
     generatedKey = true;
   }
 
+  console.log(`using encryption key: ${encryptionKey}`);
   const encryptedData = await encrypt(
     encryptionKey,
     secret,
   );
-  if (!encryptedData) {
+  if (encryptedData == undefined) {
     lastMessage.value = "Fehler beim Verschlüsseln des Secrets!";
     return;
   }
@@ -74,7 +76,7 @@ export default async function onSubmit(
   );
   if (data && data.link) {
     const secretUrl = `${location.origin}/secret/${data.link}${
-      generatedKey ? `?encryptionKey=${encryptionKey}` : ""
+      generatedKey ? `?encryptionKey=${btoa(encryptionKey)}` : ""
     }`;
     // copy url to clipboard
     navigator.clipboard.writeText(secretUrl);

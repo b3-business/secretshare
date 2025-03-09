@@ -22,17 +22,10 @@ export default function FetchSecret(
       }}
       autocomplete="off"
     >
-      <input
-        autocomplete="false"
-        name="hidden"
-        type="text"
-        style="display:none;"
-      >
-      </input>
       {usePassphrase.value && (
         <label>
           Passphrase:&nbsp;
-          <input type="password" name="passphrase" required />
+          <input type="password" name="passphrase" required autocomplete="off" />
         </label>
       )}
 

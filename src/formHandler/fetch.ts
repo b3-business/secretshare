@@ -27,35 +27,38 @@ export default async function onSubmit(
   );
   // turn json object iv into Uint8Array
   data.iv = new Uint8Array(Object.values(data.iv));
-  if (data && data.secret) {
-    if (formData.get("usePassphrase")) {
-      data.secret = await decrypt(
-        data.secret,
-        data.iv,
-        formData.get("passphrase") as string,
-      );
-    } else {
-      if (encryptionKey) {
-        data.secret = await decrypt(
-          data.secret,
-          data.iv,
-          encryptionKey,
-        );
-      }
-    }
-    const hashRaw = await crypto.subtle.digest(
-      "SHA-256",
-      new TextEncoder().encode(data.secret),
-    );
-
-    const hash = btoa(String.fromCharCode(...new Uint8Array(hashRaw)));
-
-    if (hash !== data.hash) {
-      console.log(`${hash} !== ${data.hash}`);
-      lastMessage.value =
-        `Verifikation des Secrets fehlgeschlagen. Falsche Passphrase. Verbleibende versuche: ${data.viewsLeft}`;
-      return;
-    }
-    lastMessage.value = `Secret Data: \n${data.secret}`;
+  if (data == undefined || data.secret == undefined) {
+    lastMessage.value =
+      "Fehler beim Abrufen des Secrets! Entweder ist der Link abgelaufen oder ungültig.";
+    return;
   }
+
+  if (encryptionKey) {
+    data.secret = await decrypt(
+      data.secret,
+      data.iv,
+      encryptionKey,
+    );
+  } else {
+    console.log("No encryption key found, using passphrase...");
+    data.secret = await decrypt(
+      data.secret,
+      data.iv,
+      formData.get("passphrase") as string,
+    );
+  }
+  const hashRaw = await crypto.subtle.digest(
+    "SHA-256",
+    new TextEncoder().encode(data.secret),
+  );
+
+  const hash = btoa(String.fromCharCode(...new Uint8Array(hashRaw)));
+
+  if (hash !== data.hash) {
+    console.log(`${hash} !== ${data.hash}`);
+    lastMessage.value =
+      `Verifikation des Secrets fehlgeschlagen. Falsche Passphrase. Verbleibende versuche: ${data.viewsLeft}`;
+    return;
+  }
+  lastMessage.value = `Secret Data: \n${data.secret}`;
 }
