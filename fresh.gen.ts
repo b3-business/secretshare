@@ -11,7 +11,7 @@ import * as $secret_uuid_ from "./routes/secret/[uuid].tsx";
 import * as $CreateSecret from "./islands/CreateSecret.tsx";
 import * as $FetchSecret from "./islands/FetchSecret.tsx";
 import * as $Log from "./islands/Log.tsx";
-import { type Manifest } from "$fresh/server.ts";
+import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
