@@ -14,3 +14,13 @@ deno task start
 ```
 
 This will watch the project directory and restart as necessary.
+
+### Compile
+
+To compile the project:
+
+```bash
+deno task build # run first to generate deno fresh
+deno compile -A --include _fresh --include static --include deno.json main.ts
+deno compile -A --include deno.json --include _fresh --include static --target x86_64-unknown-linux-gnu main.ts
+```
