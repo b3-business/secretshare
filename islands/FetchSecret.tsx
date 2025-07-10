@@ -25,13 +25,18 @@ export default function FetchSecret(
       {usePassphrase.value && (
         <label>
           Passphrase:&nbsp;
-          <input type="password" name="passphrase" required autocomplete="off" />
+          <input
+            type="password"
+            name="passphrase"
+            required
+            autocomplete="off"
+          />
         </label>
       )}
 
       <button
-        name={"fetchSecretButton"}
-        type={"submit"}
+        name="fetchSecretButton"
+        type="submit"
         disabled={fetched.value}
       >
         Abrufen
