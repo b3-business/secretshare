@@ -9,15 +9,20 @@ export default function Log() {
     <section>
       <pre
         style={{
+          // correct line breaks for really long messages (like base64 encoded certificate secrets)
           whiteSpace: "pre-wrap",
-          overflowWrap: "break-word",
+          overflowWrap: "anywhere",
+          // styles to mark this as some kind of log output
           border: "solid 2px gray",
           padding: "1rem",
           backgroundColor: "lightgray",
-          maxWidth: "100%",
-          width: "100%",
+          // correct sizing
+          maxWidth: "90%",
+          width: "90%",
           overflow: "auto",
           maxHeight: "50vh",
+          margin: "0 auto",
+          // hide the log box if there is no message
           display: lastMessage.value && lastMessage.value.length > 0
             ? "block"
             : "none",
