@@ -6,7 +6,7 @@ export default function UUID(props: PageProps) {
   const { uuid } = props.params;
   const encryptionKey = atob(props.url.searchParams.get("encryptionKey") || "");
   return (
-    <main class={"flex flex-col items-center justify-center"}>
+    <main class="flex flex-col items-center justify-center">
       <h2>Secret abrufen</h2>
       <p>UUID: {uuid}</p>
       <p>
