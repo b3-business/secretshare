@@ -9,5 +9,9 @@ import "@std/dotenv/load";
 import { start } from "$fresh/server.ts";
 import manifest from "./fresh.gen.ts";
 import config from "./fresh.config.ts";
+import { computeTailwindStyles } from "./src/utils/cssCache.ts";
+
+// custom things to do before starting the server
+await computeTailwindStyles();
 
 await start(manifest, config);
