@@ -22,6 +22,7 @@
     "**/_fresh/*"
   ],
   "imports": {
+    "@/": "./",
     "$fresh/": "https://deno.land/x/fresh@1.7.3/",
     "@std/dotenv": "jsr:@std/dotenv@^0.225.3",
     "preact": "https://esm.sh/preact@10.22.0",
