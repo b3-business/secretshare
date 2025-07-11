@@ -15,7 +15,14 @@ export const cssCache = new Map<string, string>();
  */
 export async function computeTailwindStyles() {
   console.time("computeTailwindStyles");
-  const css = `@import "tailwindcss";`;
+  const css = `
+  @import "tailwindcss";
+
+  @theme {
+    --color-primary: #60c0ff;
+  }
+  
+  `;
   const content = await collectTailwindContent();
 
   const resultCss = await generateTailwindCSS({
