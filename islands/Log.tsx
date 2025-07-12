@@ -1,4 +1,5 @@
 import { lastMessage, RichMessage } from "../src/utils/log.ts";
+import CardMsg from "./messages/CardMsg.tsx";
 import StringMsg from "./messages/StringMsg.tsx";
 
 function renderMessage(message: RichMessage | undefined) {
@@ -15,8 +16,7 @@ function renderMessage(message: RichMessage | undefined) {
       return <StringMsg text={message.secret} />;
     case "secretCreate":
       return (
-        <div class="flex flex-col items-start justify-center gap-2 shadow-lg rounded-lg p-4 max-w-2xl border-[1px] border-gray-200">
-          <h3 class="text-lg font-bold">{message.header}</h3>
+        <CardMsg header={message.header} extraInfo={message.extraInfo}>
           <a
             class="text-primary-dark text-lg"
             href={message.secretLink}
@@ -24,8 +24,7 @@ function renderMessage(message: RichMessage | undefined) {
           >
             {message.secretLink}
           </a>
-          <p class="">{message.extraInfo}</p>
-        </div>
+        </CardMsg>
       );
   }
 }
