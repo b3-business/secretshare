@@ -14,7 +14,13 @@ function renderMessage(message: RichMessage | undefined) {
     case "secretFetch":
       return <StringMsg text={message.secret} />;
     case "secretCreate":
-      return <StringMsg text={message.secretLink} />;
+      return (
+        <div class="flex flex-col items-center justify-center gap-4">
+          <h3>{message.header}</h3>
+          <a href={message.secretLink} target="_blank">{message.secretLink}</a>
+          <p>{message.extraInfo}</p>
+        </div>
+      );
   }
 }
 

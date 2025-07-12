@@ -35,7 +35,10 @@ export default async function onSubmit(
 
   if (formData.get("usePassphrase") == "on") {
     if (!encryptionKey) {
-      lastMessage.value = "Bitte geben Sie ein Passphrase ein!";
+      lastMessage.value = {
+        type: "string",
+        text: "Bitte geben Sie ein Passphrase ein!",
+      };
       return;
     }
   } else {
@@ -53,7 +56,10 @@ export default async function onSubmit(
     secret,
   );
   if (encryptedData == undefined) {
-    lastMessage.value = "Fehler beim Verschlüsseln des Secrets!";
+    lastMessage.value = {
+      type: "string",
+      text: "Fehler beim Verschlüsseln des Secrets!",
+    };
     return;
   }
   encryptedSecret = encryptedData.encryptedSecret;
@@ -75,7 +81,10 @@ export default async function onSubmit(
     body: JSON.stringify({ encryptedSecret, expireIn, hash, allowedViews, iv }),
   });
   const data = await response.json().catch(() =>
-    lastMessage.value = "Fehler beim Erstellen des Secrets!"
+    lastMessage.value = {
+      type: "string",
+      text: "Fehler beim Erstellen des Secrets!",
+    }
   );
   if (data && data.link) {
     const secretUrl = `${location.origin}/secret/${data.link}${
@@ -83,7 +92,11 @@ export default async function onSubmit(
     }`;
     // copy url to clipboard
     navigator.clipboard.writeText(secretUrl);
-    lastMessage.value =
-      `Link erstellt: \n${secretUrl} \nLink wurde in die Zwischenablage kopiert!`;
+    lastMessage.value = {
+      type: "secretCreate",
+      secretLink: secretUrl,
+      header: `Link erstellt`,
+      extraInfo: `Link wurde in die Zwischenablage kopiert!`,
+    };
   }
 }

@@ -16,6 +16,8 @@ export type RichMessage =
   | {
     type: "secretCreate";
     secretLink: string;
+    header?: string;
+    extraInfo?: string;
   };
 
 export const lastMessage = signal<RichMessage | undefined>(undefined);
