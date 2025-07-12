@@ -32,7 +32,7 @@ export default function CreateSecret() {
         <ExpireForm />
         <PassphraseInput />
 
-        <button type="submit">Anlegen</button>
+        <button class="p-2" type="submit">Anlegen</button>
       </form>
     </main>
   );

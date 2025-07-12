@@ -38,6 +38,7 @@ export default function FetchSecret(
         name="fetchSecretButton"
         type="submit"
         disabled={fetched.value}
+        class="p-2"
       >
         Abrufen
       </button>
