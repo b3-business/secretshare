@@ -19,7 +19,9 @@ export async function computeTailwindStyles() {
   @import "tailwindcss";
 
   @theme {
-    --color-primary: #60c0ff;
+    --color-primary: oklch(0.7751 0.127965 240.0314);
+    --color-primary-dark: oklch(0.5327 0.1152 242.02);
+
   }
   
   `;

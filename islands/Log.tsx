@@ -1,35 +1,48 @@
-import { lastMessage } from "../src/utils/log.ts";
+import { lastMessage, RichMessage } from "../src/utils/log.ts";
+import CardMsg from "./messages/CardMsg.tsx";
+import ErrorCardMsg from "./messages/ErrorCardMsg.tsx";
+
+function renderMessage(message: RichMessage | undefined) {
+  if (!message) {
+    return undefined;
+  }
+
+  switch (message.type) {
+    case "string":
+      return (
+        <CardMsg header="Error">
+          <span>{message.text}</span>
+        </CardMsg>
+      );
+    case "error":
+      return (
+        <ErrorCardMsg header="Error">
+          <span>{message.text}</span>
+        </ErrorCardMsg>
+      );
+    case "secretFetch":
+      return (
+        <CardMsg header="Secret Data">
+          <pre class="monospace whitespace-pre-wrap wrap-anywhere bg-gray-100 p-2 rounded-md overflow-auto max-w-[90dvw] min-w-md">
+            {message.secret}
+          </pre>
+        </CardMsg>
+      );
+    case "secretCreate":
+      return (
+        <CardMsg header={message.header} extraInfo={message.extraInfo}>
+          <a
+            class="text-primary-dark text-lg"
+            href={message.secretLink}
+            target="_blank"
+          >
+            {message.secretLink}
+          </a>
+        </CardMsg>
+      );
+  }
+}
 
 export default function Log() {
-  return (
-    // TODO: enable when tailwind integration is working
-    // <section class="max-w-full w-full overflow-x-auto md:max-w-[80%] md:w-[80%] border-solid border-2 border-gray-300 bg-gray-100 p-2">
-    //   <pre class="wrap-break-word whitespace-pre-wrap">{lastMessage}</pre>
-    // </section>
-    <section>
-      <pre
-        style={{
-          // correct line breaks for really long messages (like base64 encoded certificate secrets)
-          whiteSpace: "pre-wrap",
-          overflowWrap: "anywhere",
-          // styles to mark this as some kind of log output
-          border: "solid 2px gray",
-          padding: "1rem",
-          backgroundColor: "lightgray",
-          // correct sizing
-          maxWidth: "90%",
-          width: "90%",
-          overflow: "auto",
-          maxHeight: "50vh",
-          margin: "0 auto",
-          // hide the log box if there is no message
-          display: lastMessage.value && lastMessage.value.length > 0
-            ? "block"
-            : "none",
-        }}
-      >
-        {lastMessage}
-      </pre>
-    </section>
-  );
+  return <div>{renderMessage(lastMessage.value)}</div>;
 }

@@ -1,11 +1,9 @@
-import CreateSecret from "../islands/CreateSecret.tsx";
-import Log from "../islands/Log.tsx";
+import { redirectTo } from "../utils/routing.ts";
 
-export default function Home() {
-  return (
-    <main class="flex flex-col items-center justify-center">
-      <CreateSecret />
-      <Log />
-    </main>
-  );
+/**
+ * @bjesuiter: "async" is required here, otherwise the redirectTo will not work for some reason
+ * (async pages are handled slightly differently in fresh than sync pages)
+ */
+export default async function Home() {
+  return redirectTo("/create");
 }

@@ -1,3 +1,23 @@
 import { signal } from "@preact/signals";
 
-export const lastMessage = signal("");
+export type RichMessage =
+  | {
+    type: "string";
+    text: string;
+  }
+  | {
+    type: "error";
+    text: string;
+  }
+  | {
+    type: "secretFetch";
+    secret: string;
+  }
+  | {
+    type: "secretCreate";
+    secretLink: string;
+    header?: string;
+    extraInfo?: string;
+  };
+
+export const lastMessage = signal<RichMessage | undefined>(undefined);

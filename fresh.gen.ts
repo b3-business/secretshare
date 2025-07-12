@@ -7,11 +7,14 @@ import * as $_app from "./routes/_app.tsx";
 import * as $api_create from "./routes/api/create.ts";
 import * as $api_res_tailwind_css from "./routes/api/res/tailwind.css.ts";
 import * as $api_secret_uuid_ from "./routes/api/secret/[uuid].ts";
+import * as $create from "./routes/create.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $secret_uuid_ from "./routes/secret/[uuid].tsx";
 import * as $CreateSecret from "./islands/CreateSecret.tsx";
 import * as $FetchSecret from "./islands/FetchSecret.tsx";
 import * as $Log from "./islands/Log.tsx";
+import * as $messages_CardMsg from "./islands/messages/CardMsg.tsx";
+import * as $messages_ErrorCardMsg from "./islands/messages/ErrorCardMsg.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -21,6 +24,7 @@ const manifest = {
     "./routes/api/create.ts": $api_create,
     "./routes/api/res/tailwind.css.ts": $api_res_tailwind_css,
     "./routes/api/secret/[uuid].ts": $api_secret_uuid_,
+    "./routes/create.tsx": $create,
     "./routes/index.tsx": $index,
     "./routes/secret/[uuid].tsx": $secret_uuid_,
   },
@@ -28,6 +32,8 @@ const manifest = {
     "./islands/CreateSecret.tsx": $CreateSecret,
     "./islands/FetchSecret.tsx": $FetchSecret,
     "./islands/Log.tsx": $Log,
+    "./islands/messages/CardMsg.tsx": $messages_CardMsg,
+    "./islands/messages/ErrorCardMsg.tsx": $messages_ErrorCardMsg,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;
