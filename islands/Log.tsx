@@ -15,10 +15,16 @@ function renderMessage(message: RichMessage | undefined) {
       return <StringMsg text={message.secret} />;
     case "secretCreate":
       return (
-        <div class="flex flex-col items-center justify-center gap-4">
-          <h3>{message.header}</h3>
-          <a href={message.secretLink} target="_blank">{message.secretLink}</a>
-          <p>{message.extraInfo}</p>
+        <div class="flex flex-col items-center justify-center gap-2">
+          <h3 class="text-lg font-bold">{message.header}</h3>
+          <a
+            class="text-primary-dark border-2 border-primary-dark rounded-md p-2"
+            href={message.secretLink}
+            target="_blank"
+          >
+            {message.secretLink}
+          </a>
+          <p class="text-sm">{message.extraInfo}</p>
         </div>
       );
   }
