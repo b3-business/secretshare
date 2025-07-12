@@ -27,6 +27,7 @@ export default function Log() {
             ? "block"
             : "none",
         }}
+        class="md:min-w-[250px]"
       >
         {lastMessage}
       </pre>
