@@ -13,7 +13,13 @@ function renderMessage(message: RichMessage | undefined) {
     case "error":
       return <StringMsg text={message.text} />;
     case "secretFetch":
-      return <StringMsg text={message.secret} />;
+      return (
+        <CardMsg header="Secret Data">
+          <pre class="monospace whitespace-pre-wrap wrap-anywhere bg-gray-100 p-2 rounded-md overflow-auto max-w-[90dvw] min-w-md">
+            {message.secret}
+          </pre>
+        </CardMsg>
+      );
     case "secretCreate":
       return (
         <CardMsg header={message.header} extraInfo={message.extraInfo}>
