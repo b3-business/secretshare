@@ -7,6 +7,7 @@ import * as $_app from "./routes/_app.tsx";
 import * as $api_create from "./routes/api/create.ts";
 import * as $api_res_tailwind_css from "./routes/api/res/tailwind.css.ts";
 import * as $api_secret_uuid_ from "./routes/api/secret/[uuid].ts";
+import * as $create from "./routes/create.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $secret_uuid_ from "./routes/secret/[uuid].tsx";
 import * as $CreateSecret from "./islands/CreateSecret.tsx";
@@ -21,6 +22,7 @@ const manifest = {
     "./routes/api/create.ts": $api_create,
     "./routes/api/res/tailwind.css.ts": $api_res_tailwind_css,
     "./routes/api/secret/[uuid].ts": $api_secret_uuid_,
+    "./routes/create.tsx": $create,
     "./routes/index.tsx": $index,
     "./routes/secret/[uuid].tsx": $secret_uuid_,
   },
