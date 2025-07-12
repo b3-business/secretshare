@@ -1,6 +1,6 @@
 import { lastMessage, RichMessage } from "../src/utils/log.ts";
 import CardMsg from "./messages/CardMsg.tsx";
-import StringMsg from "./messages/StringMsg.tsx";
+import ErrorCardMsg from "./messages/ErrorCardMsg.tsx";
 
 function renderMessage(message: RichMessage | undefined) {
   if (!message) {
@@ -9,9 +9,17 @@ function renderMessage(message: RichMessage | undefined) {
 
   switch (message.type) {
     case "string":
-      return <StringMsg text={message.text} />;
+      return (
+        <CardMsg header="Error">
+          <span>{message.text}</span>
+        </CardMsg>
+      );
     case "error":
-      return <StringMsg text={message.text} />;
+      return (
+        <ErrorCardMsg header="Error">
+          <span>{message.text}</span>
+        </ErrorCardMsg>
+      );
     case "secretFetch":
       return (
         <CardMsg header="Secret Data">

@@ -14,6 +14,7 @@ import * as $CreateSecret from "./islands/CreateSecret.tsx";
 import * as $FetchSecret from "./islands/FetchSecret.tsx";
 import * as $Log from "./islands/Log.tsx";
 import * as $messages_CardMsg from "./islands/messages/CardMsg.tsx";
+import * as $messages_ErrorCardMsg from "./islands/messages/ErrorCardMsg.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -32,6 +33,7 @@ const manifest = {
     "./islands/FetchSecret.tsx": $FetchSecret,
     "./islands/Log.tsx": $Log,
     "./islands/messages/CardMsg.tsx": $messages_CardMsg,
+    "./islands/messages/ErrorCardMsg.tsx": $messages_ErrorCardMsg,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;
