@@ -10,7 +10,10 @@ export default async function onSubmit(
   const secret = formData.get("secret") as string;
 
   if (!secret || secret.length < 1) {
-    lastMessage.value = "Bitte geben Sie ein Secret ein!";
+    lastMessage.value = {
+      type: "string",
+      text: "Bitte geben Sie ein Secret ein!",
+    };
     return;
   }
 

@@ -16,20 +16,29 @@ export default async function onSubmit(
   });
 
   if (response.status >= 400) {
-    lastMessage.value =
-      "Fehler beim Abrufen des Secrets! Entweder ist der Link abgelaufen oder ungültig.";
+    lastMessage.value = {
+      type: "error",
+      text:
+        "Fehler beim Abrufen des Secrets! Entweder ist der Link abgelaufen oder ungültig.",
+    };
     return;
   }
 
   const data = await response.json().catch(() =>
-    lastMessage.value =
-      "Fehler beim Abrufen des Secrets! Entweder ist der Link abgelaufen oder ungültig."
+    lastMessage.value = {
+      type: "error",
+      text:
+        "Fehler beim Abrufen des Secrets! Entweder ist der Link abgelaufen oder ungültig.",
+    }
   );
   // turn json object iv into Uint8Array
   data.iv = new Uint8Array(Object.values(data.iv));
   if (data == undefined || data.secret == undefined) {
-    lastMessage.value =
-      "Fehler beim Abrufen des Secrets! Entweder ist der Link abgelaufen oder ungültig.";
+    lastMessage.value = {
+      type: "error",
+      text:
+        "Fehler beim Abrufen des Secrets! Entweder ist der Link abgelaufen oder ungültig.",
+    };
     return;
   }
 
@@ -56,9 +65,16 @@ export default async function onSubmit(
 
   if (hash !== data.hash) {
     console.log(`${hash} !== ${data.hash}`);
-    lastMessage.value =
-      `Verifikation des Secrets fehlgeschlagen. Falsche Passphrase. Verbleibende versuche: ${data.viewsLeft}`;
+    lastMessage.value = {
+      type: "error",
+      text:
+        `Verifikation des Secrets fehlgeschlagen. Falsche Passphrase. Verbleibende versuche: ${data.viewsLeft}`,
+    };
     return;
   }
-  lastMessage.value = `Secret Data: \n${data.secret}`;
+
+  lastMessage.value = {
+    type: "secretFetch",
+    secret: data.secret,
+  };
 }

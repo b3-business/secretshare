@@ -7,7 +7,10 @@ export async function encrypt(key: string, secret: string) {
     ),
   );
   if (!key || key.length < 1) {
-    lastMessage.value = "Bitte geben Sie ein Passphrase ein!";
+    lastMessage.value = {
+      type: "string",
+      text: "Bitte geben Sie eine Passphrase ein!",
+    };
     return;
   }
   const iv = crypto.getRandomValues(new Uint8Array(12));
@@ -38,7 +41,10 @@ export async function decrypt(
   key: string,
 ) {
   if (!key || key.length < 1) {
-    lastMessage.value = "Bitte geben Sie ein Passphrase ein!";
+    lastMessage.value = {
+      type: "string",
+      text: "Bitte geben Sie eine Passphrase ein!",
+    };
     return;
   }
 
@@ -58,7 +64,10 @@ export async function decrypt(
     ["decrypt"],
   ).catch((e) => {
     console.error(e);
-    lastMessage.value = "Fehler beim Entschlüsseln des Secrets!";
+    lastMessage.value = {
+      type: "string",
+      text: "Fehler beim Entschlüsseln des Secrets!",
+    };
     return;
   });
 
@@ -82,7 +91,10 @@ export async function decrypt(
     secret,
   ).catch((e: Error) => {
     console.error(e);
-    lastMessage.value = "Fehler beim Entschlüsseln des Secrets!";
+    lastMessage.value = {
+      type: "string",
+      text: "Fehler beim Entschlüsseln des Secrets!",
+    };
     return;
   });
 
