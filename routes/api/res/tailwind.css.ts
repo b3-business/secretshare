@@ -13,11 +13,20 @@ export const handler = async (
     });
   }
 
-  const resultCss = await computeTailwindStyles();
-
-  return new Response(resultCss, {
-    headers: {
-      "Content-Type": "text/css",
-    },
-  });
+  try {
+    const resultCss = await computeTailwindStyles();
+    return new Response(resultCss, {
+      headers: {
+        "Content-Type": "text/css",
+      },
+    });
+  } catch (e) {
+    console.error(`ON REQUEST: Error while computing tailwind styles: `, e);
+    return new Response("Error while computing tailwind styles", {
+      status: 500,
+      headers: {
+        "Content-Type": "text/plain",
+      },
+    });
+  }
 };

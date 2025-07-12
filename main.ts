@@ -12,6 +12,10 @@ import config from "./fresh.config.ts";
 import { computeTailwindStyles } from "./src/utils/cssCache.ts";
 
 // custom things to do before starting the server
-await computeTailwindStyles();
+try {
+  await computeTailwindStyles();
+} catch (e) {
+  console.error(`ON STARTUP: Error while computing tailwind styles: `, e);
+}
 
 await start(manifest, config);
