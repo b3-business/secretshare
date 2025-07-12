@@ -65,7 +65,7 @@ export async function decrypt(
   ).catch((e) => {
     console.error(e);
     lastMessage.value = {
-      type: "string",
+      type: "error",
       text: "Fehler beim Entschlüsseln des Secrets!",
     };
     return;
@@ -92,7 +92,7 @@ export async function decrypt(
   ).catch((e: Error) => {
     console.error(e);
     lastMessage.value = {
-      type: "string",
+      type: "error",
       text: "Fehler beim Entschlüsseln des Secrets!",
     };
     return;

@@ -10,7 +10,7 @@ function renderMessage(message: RichMessage | undefined) {
   switch (message.type) {
     case "string":
       return (
-        <CardMsg header="Error">
+        <CardMsg>
           <span>{message.text}</span>
         </CardMsg>
       );

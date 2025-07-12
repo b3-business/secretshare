@@ -57,7 +57,7 @@ export default async function onSubmit(
   );
   if (encryptedData == undefined) {
     lastMessage.value = {
-      type: "string",
+      type: "error",
       text: "Fehler beim Verschlüsseln des Secrets!",
     };
     return;
@@ -82,7 +82,7 @@ export default async function onSubmit(
   });
   const data = await response.json().catch(() =>
     lastMessage.value = {
-      type: "string",
+      type: "error",
       text: "Fehler beim Erstellen des Secrets!",
     }
   );
