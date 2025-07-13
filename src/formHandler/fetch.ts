@@ -1,5 +1,5 @@
-import { decrypt } from "../utils/crypt.ts";
-import { lastMessage } from "../utils/log.ts";
+import { decrypt } from "@/src/utils/crypt.ts";
+import { lastMessage } from "@/src/utils/log.ts";
 import { JSX } from "preact";
 
 export default async function onSubmit(
@@ -75,6 +75,7 @@ export default async function onSubmit(
 
   lastMessage.value = {
     type: "secretFetch",
+    extraInfo: `Anzahl verbleibender Ansichten: ${data.viewsLeft}`,
     secret: data.secret,
   };
 }

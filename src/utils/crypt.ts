@@ -1,4 +1,4 @@
-import { lastMessage } from "./log.ts";
+import { lastMessage } from "@/src/utils/log.ts";
 export async function encrypt(key: string, secret: string) {
   const passphraseHash = new Uint8Array(
     await crypto.subtle.digest(
@@ -13,7 +13,7 @@ export async function encrypt(key: string, secret: string) {
     };
     return;
   }
-  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const iv = crypto.getRandomValues(new Uint8Array(12)); // AES-GCM requires a 12-byte IV
 
   const encryptedRaw = await crypto.subtle.encrypt(
     {
@@ -48,7 +48,7 @@ export async function decrypt(
     return;
   }
 
-  // hash passphrase to create a 128 bit Uint8Array functioning as key
+  // hash passphrase to create a 256 bit Uint8Array functioning as key
   const passphraseHash = new Uint8Array(
     await crypto.subtle.digest(
       "SHA-256",

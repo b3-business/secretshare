@@ -1,4 +1,5 @@
 import { signal } from "@preact/signals";
+import { scrollNumberInputValue } from "@/src/utils/wheelEventHandler.ts";
 const isCustomExpireIn = signal(false);
 
 export default function ExpireForm() {
@@ -17,10 +18,28 @@ export default function ExpireForm() {
       </label>
       {isCustomExpireIn.value && (
         <form id="duration">
-          <input id="h" name="h" type="number" min="0" max="999" value={0} />
+          <input
+            class="p-2 border-2 border-gray-500 rounded"
+            id="h"
+            name="h"
+            type="number"
+            min="0"
+            max="999"
+            value={0}
+            onWheel={scrollNumberInputValue}
+          />
           <label for="h">h</label>
           &nbsp;
-          <input id="m" name="m" type="number" min="0" max="59" value={0} />
+          <input
+            class="p-2 border-2 border-gray-500 rounded"
+            id="m"
+            name="m"
+            type="number"
+            min="0"
+            max="59"
+            value={0}
+            onWheel={scrollNumberInputValue}
+          />
           <label for="m">m</label>
         </form>
       )}

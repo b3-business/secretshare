@@ -1,9 +1,10 @@
 import { FreshContext, Handlers } from "$fresh/server.ts";
-import { secrets } from "../../../src/secretStorage/secrets.ts";
+import { secrets } from "@/src/secretStorage/secrets.ts";
 
 export const handler: Handlers = {
   GET(req: Request, _ctx: FreshContext) {
-    const uuid = req.url.split("/").pop();
+    const { uuid } = _ctx.params;
+
     console.log(`Fetching secret with uuid: ${uuid}`);
     if (!uuid) {
       console.log("No uuid provided");

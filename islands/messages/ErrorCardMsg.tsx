@@ -12,8 +12,8 @@ export default function CardMsg(
       {props.header && (
         <h3 class="text-lg font-bold text-red-600">{props.header}</h3>
       )}
-      {props.children}
       {props.extraInfo && <p>{props.extraInfo}</p>}
+      {props.children}
     </div>
   );
 }

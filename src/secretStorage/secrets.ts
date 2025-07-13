@@ -74,17 +74,17 @@ class Secrets {
       this.secrets.delete(uuid);
       return null;
     }
-
-    if (secret.viewCount++ >= secret.allowedViews) {
+    
+    const viewsLeft = secret.allowedViews - ++secret.viewCount;
+    
+    if (viewsLeft <= 0) {
       console.log(
         `Secret with uuid: ${uuid} has reached the view limit and got deleted.`,
       );
       this.secrets.delete(uuid);
-      return null;
     }
-
-    const viewsLeft = secret.allowedViews - secret.viewCount;
     console.log(`Secret with uuid: ${uuid} fetched successfully. Views left: ${viewsLeft}`);
+    
     return {
       secret: secret.data,
       hash: secret.hash,

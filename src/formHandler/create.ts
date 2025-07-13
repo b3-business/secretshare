@@ -1,5 +1,5 @@
-import { encrypt } from "../utils/crypt.ts";
-import { lastMessage } from "../utils/log.ts";
+import { encrypt } from "@/src/utils/crypt.ts";
+import { lastMessage } from "@/src/utils/log.ts";
 import { JSX } from "preact";
 
 export default async function onSubmit(
@@ -45,7 +45,7 @@ export default async function onSubmit(
     // generate a random key
     console.log("Generating random key...");
     encryptionKey = btoa(
-      String.fromCharCode(...crypto.getRandomValues(new Uint8Array(16))),
+      String.fromCharCode(...crypto.getRandomValues(new Uint8Array(24))),
     );
     generatedKey = true;
   }
@@ -69,7 +69,7 @@ export default async function onSubmit(
     "SHA-256",
     new TextEncoder().encode(secret),
   );
-  const allowedViews = 1;
+  const allowedViews = Number(formData.get("viewCount") || 1);
 
   const hash = btoa(String.fromCharCode(...new Uint8Array(hashArray)));
 
@@ -98,5 +98,12 @@ export default async function onSubmit(
       header: `Link erstellt`,
       extraInfo: `Link wurde in die Zwischenablage kopiert!`,
     };
+  }
+  else {
+    lastMessage.value = {
+      type: "error",
+      text: "Datentypen konnten nicht validiert werden. Bitte versuchen Sie es erneut.",
+    };
+    console.error("Response data:", data);
   }
 }

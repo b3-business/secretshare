@@ -1,4 +1,4 @@
-import onSubmit from "../src/formHandler/fetch.ts";
+import onSubmit from "@/src/formHandler/fetch.ts";
 import { signal } from "@preact/signals";
 
 const fetched = signal(false);

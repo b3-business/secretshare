@@ -1,4 +1,4 @@
-import { lastMessage, RichMessage } from "../src/utils/log.ts";
+import { lastMessage, RichMessage } from "@/src/utils/log.ts";
 import CardMsg from "./messages/CardMsg.tsx";
 import ErrorCardMsg from "./messages/ErrorCardMsg.tsx";
 
@@ -22,7 +22,7 @@ function renderMessage(message: RichMessage | undefined) {
       );
     case "secretFetch":
       return (
-        <CardMsg header="Secret Data">
+        <CardMsg header="Secret Data" extraInfo={message.extraInfo}>
           <pre class="monospace whitespace-pre-wrap wrap-anywhere bg-gray-100 p-2 rounded-md overflow-auto max-w-[90dvw] min-w-md">
             {message.secret}
           </pre>

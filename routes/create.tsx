@@ -1,5 +1,5 @@
-import CreateSecret from "../islands/CreateSecret.tsx";
-import Log from "../islands/Log.tsx";
+import CreateSecret from "@/islands/CreateSecret.tsx";
+import Log from "@/islands/Log.tsx";
 
 export default function CreateSecretPage() {
   return (

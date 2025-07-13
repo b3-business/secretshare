@@ -24,7 +24,7 @@ export default function PassphraseInput() {
             type="password"
             name="passphrase"
             class="p-2 border-2 border-gray-500 rounded"
-            placeholder={"Optional"}
+            placeholder="Optional"
             required
             autocomplete="off"
           />

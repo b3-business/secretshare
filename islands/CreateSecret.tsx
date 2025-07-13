@@ -1,10 +1,11 @@
-import onSubmit from "../src/formHandler/create.ts";
-import ExpireForm from "../components/CreateSecret/ExpireForm.tsx";
-import PassphraseInput from "../components/CreateSecret/PassphraseInput.tsx";
+import onSubmit from "@/src/formHandler/create.ts";
+import ExpireForm from "@/components/CreateSecret/ExpireForm.tsx";
+import PassphraseInput from "@/components/CreateSecret/PassphraseInput.tsx";
+import ViewCount from "@/components/CreateSecret/ViewCount.tsx";
 
 export default function CreateSecret() {
   return (
-    <main>
+    <section>
       <h2 class="my-8 text-2xl font-bold items-center flex flex-col">
         Erstelle ein neues Secret
       </h2>
@@ -31,9 +32,10 @@ export default function CreateSecret() {
 
         <ExpireForm />
         <PassphraseInput />
+        <ViewCount />
 
         <button class="p-2" type="submit">Anlegen</button>
       </form>
-    </main>
+    </section>
   );
 }

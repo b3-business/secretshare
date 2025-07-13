@@ -12,6 +12,8 @@ export type RichMessage =
   | {
     type: "secretFetch";
     secret: string;
+    header?: string;
+    extraInfo?: string;
   }
   | {
     type: "secretCreate";

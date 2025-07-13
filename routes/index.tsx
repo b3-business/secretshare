@@ -1,4 +1,4 @@
-import { redirectTo } from "../utils/routing.ts";
+import { redirectTo } from "@/utils/routing.ts";
 
 /**
  * @bjesuiter: "async" is required here, otherwise the redirectTo will not work for some reason

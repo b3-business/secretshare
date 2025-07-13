@@ -1,6 +1,6 @@
 import { PageProps } from "$fresh/server.ts";
-import FetchSecret from "../../islands/FetchSecret.tsx";
-import Log from "../../islands/Log.tsx";
+import FetchSecret from "@/islands/FetchSecret.tsx";
+import Log from "@/islands/Log.tsx";
 
 export default function UUID(props: PageProps) {
   const { uuid } = props.params;
