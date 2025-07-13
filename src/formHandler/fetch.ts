@@ -58,7 +58,10 @@ export default async function onSubmit(
   }
 
   if (!data.secret) {
-    // just return, lastMessage will be set in decrypt function
+    lastMessage.value = {
+      type: "error",
+      text: `Fehler beim Entschlüsseln des Secrets! Verbleibende Versuche: ${data.viewsLeft}`,
+    };
     return;
   }
 
