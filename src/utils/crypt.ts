@@ -82,6 +82,7 @@ export async function decrypt(
     secret[i] = b64.charCodeAt(i);
   }
 
+  let isError = false;
   const decryptedRaw = await crypto.subtle.decrypt(
     {
       name: "AES-GCM",
@@ -95,11 +96,11 @@ export async function decrypt(
       type: "error",
       text: "Fehler beim Entschlüsseln des Secrets!",
     };
-    return;
+    isError = true;
   });
 
-  if (!decryptedRaw) {
-    return;
+  if (!decryptedRaw || isError) {
+    return false;
   }
 
   const decryptedSecret = new TextDecoder().decode(decryptedRaw);

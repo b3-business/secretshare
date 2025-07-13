@@ -47,29 +47,18 @@ export default async function onSubmit(
       data.secret,
       data.iv,
       encryptionKey,
-    );
+    ) || false;
   } else {
     console.log("No encryption key found, using passphrase...");
     data.secret = await decrypt(
       data.secret,
       data.iv,
       formData.get("passphrase") as string,
-    );
+    ) || false;
   }
-  const hashRaw = await crypto.subtle.digest(
-    "SHA-256",
-    new TextEncoder().encode(data.secret),
-  );
 
-  const hash = btoa(String.fromCharCode(...new Uint8Array(hashRaw)));
-
-  if (hash !== data.hash) {
-    console.log(`${hash} !== ${data.hash}`);
-    lastMessage.value = {
-      type: "error",
-      text:
-        `Verifikation des Secrets fehlgeschlagen. Falsche Passphrase. Verbleibende versuche: ${data.viewsLeft}`,
-    };
+  if (!data.secret) {
+    // just return, lastMessage will be set in decrypt function
     return;
   }
 

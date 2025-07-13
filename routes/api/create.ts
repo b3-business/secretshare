@@ -3,10 +3,10 @@ import { secrets } from "@/src/secretStorage/secrets.ts";
 
 export const handler: Handlers = {
   async POST(req: Request, _ctx: FreshContext) {
-    const { encryptedSecret, expireIn, allowedViews, hash, iv } = await req
+    const { encryptedSecret, expireIn, allowedViews, iv } = await req
       .json();
 
-    if (!encryptedSecret || !expireIn || !allowedViews || !hash || !iv) {
+    if (!encryptedSecret || !expireIn || !allowedViews || !iv) {
       return new Response(JSON.stringify({ error: "Missing fields" }), {
         headers: { "Content-Type": "application/json" },
         status: 400,
@@ -14,7 +14,7 @@ export const handler: Handlers = {
       });
     }
     if (typeof encryptedSecret !== "string" || typeof expireIn !== "number" ||
-        typeof allowedViews !== "number" || typeof hash !== "string") {
+        typeof allowedViews !== "number") {
       return new Response(JSON.stringify({ error: "Invalid field types" }), {
         headers: { "Content-Type": "application/json" },
         status: 400,
@@ -24,7 +24,6 @@ export const handler: Handlers = {
     const uuid = secrets.add({
       secret: encryptedSecret,
       expireIn,
-      hash,
       allowedViews,
       iv,
     });

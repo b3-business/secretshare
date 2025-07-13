@@ -26,6 +26,7 @@ export default function FetchSecret(
         <label>
           Passphrase:&nbsp;
           <input
+            class="p-2 border-2 border-gray-500 rounded"
             type="password"
             name="passphrase"
             required

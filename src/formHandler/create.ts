@@ -65,20 +65,14 @@ export default async function onSubmit(
   encryptedSecret = encryptedData.encryptedSecret;
   iv = encryptedData.iv;
 
-  const hashArray = await crypto.subtle.digest(
-    "SHA-256",
-    new TextEncoder().encode(secret),
-  );
   const allowedViews = Number(formData.get("viewCount") || 1);
-
-  const hash = btoa(String.fromCharCode(...new Uint8Array(hashArray)));
 
   const response = await fetch("/api/create", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ encryptedSecret, expireIn, hash, allowedViews, iv }),
+    body: JSON.stringify({ encryptedSecret, expireIn, allowedViews, iv }),
   });
   const data = await response.json().catch(() =>
     lastMessage.value = {
