@@ -6,11 +6,14 @@
     "manifest": "deno task cli manifest $(pwd)",
     "dev": "deno run -A --watch=static/,routes/,utils/,islands/,components/ dev.ts",
     "start": "deno run -A --watch=static/,routes/,utils/,islands/,components/ main.ts",
-    "build": "deno run -A dev.ts build && deno task genWin && deno task genLinux",
+    "build": "deno run -A --vendor dev.ts build",
     "preview": "deno run -A main.ts",
     "update": "deno run -A -r https://fresh.deno.dev/update .",
     "genWin": "deno compile -A --include _fresh --include static --include deno.json main.ts --target x86_64-pc-windows-msvc --output secretshare.exe",
-    "genLinux": "deno compile -A --include deno.json --include _fresh --include static --target x86_64-unknown-linux-gnu main.ts --output secretshare"
+    "genLinux": "deno compile -A --include deno.json --include _fresh --include static --target x86_64-unknown-linux-gnu main.ts --output secretshare",
+    "genMac": "deno compile -A --include deno.json --include _fresh --include static --include jsr:@bjesuiter/deno-tailwindcss-iso@1.0.5-poc.1 --target aarch64-apple-darwin main.ts --output secretshare",
+    "compile": "deno task build && deno task genWin && deno task genLinux && deno task genMac",
+    "compileMac": "deno task build && deno task genMac"
   },
   "lint": {
     "rules": {
@@ -26,6 +29,7 @@
   "imports": {
     "@/": "./",
     "@bjesuiter/deno-tailwindcss-iso": "jsr:@bjesuiter/deno-tailwindcss-iso@1.0.5-poc.1",
+    "jsr:@bjesuiter/deno-tailwindcss-iso@1.0.5-poc.1": "./vendor/jsr.io/@bjesuiter/deno-tailwindcss-iso/1.0.5-poc.1/",
     "$fresh/": "https://deno.land/x/fresh@1.7.3/",
     "@std/dotenv": "jsr:@std/dotenv@^0.225.3",
     "@std/fs": "jsr:@std/fs@^1.0.19",
@@ -33,6 +37,11 @@
     "preact/": "https://esm.sh/preact@10.22.0/",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.2",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1"
+  },
+  "scopes": {
+    "./vendor/": {
+      "jsr:@bjesuiter/deno-tailwindcss-iso@1.0.5-poc.1": "./vendor/jsr.io/@bjesuiter/deno-tailwindcss-iso/1.0.5-poc.1/"
+    }
   },
   "compilerOptions": {
     "jsx": "react-jsx",

@@ -11,3 +11,6 @@ _fresh/
 node_modules/
 
 secretshare*
+
+# @bjesuiter: ignores the vendor directory, will only be used in the compile process to make sure the wasm from the deno-tailwindcss-iso package is included
+vendor
