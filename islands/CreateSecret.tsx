@@ -1,7 +1,7 @@
 import onSubmit from "@/src/formHandler/create.ts";
 import CustomExpireInForm from "../components/CreateSecret/CustomExpireInForm.tsx";
 import PassphraseInput from "@/components/CreateSecret/PassphraseInput.tsx";
-import ViewCount from "@/components/CreateSecret/ViewCount.tsx";
+import ViewCountLimitInput from "../components/CreateSecret/ViewCountLimitInput.tsx";
 
 export default function CreateSecret() {
   return (
@@ -31,7 +31,7 @@ export default function CreateSecret() {
         <div class="grid grid-cols-[min-content_1fr] gap-4 items-center justify-center w-[90%] mt-4">
           <CustomExpireInForm />
           <PassphraseInput />
-          <ViewCount />
+          <ViewCountLimitInput />
         </div>
 
         <button class="p-2 self-stretch" type="submit">Anlegen</button>

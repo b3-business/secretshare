@@ -3,7 +3,7 @@ import { scrollNumberInputValue } from "@/src/utils/wheelEventHandler.ts";
 
 const useViewCount = signal(false);
 
-export default function ViewCountInput() {
+export default function ViewCountLimitInput() {
   return (
     <>
       <input
