@@ -2,7 +2,7 @@ import { signal } from "@preact/signals";
 import { scrollNumberInputValue } from "@/src/utils/wheelEventHandler.ts";
 const isCustomExpireIn = signal(false);
 
-export default function ExpireForm() {
+export default function CustomExpireInForm() {
   return (
     <>
       <input

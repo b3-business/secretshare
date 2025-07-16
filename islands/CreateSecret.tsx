@@ -1,5 +1,5 @@
 import onSubmit from "@/src/formHandler/create.ts";
-import ExpireForm from "@/components/CreateSecret/ExpireForm.tsx";
+import CustomExpireInForm from "../components/CreateSecret/CustomExpireInForm.tsx";
 import PassphraseInput from "@/components/CreateSecret/PassphraseInput.tsx";
 import ViewCount from "@/components/CreateSecret/ViewCount.tsx";
 
@@ -29,7 +29,7 @@ export default function CreateSecret() {
         />
 
         <div class="grid grid-cols-[min-content_1fr] gap-4 items-center justify-center w-[90%] mt-4">
-          <ExpireForm />
+          <CustomExpireInForm />
           <PassphraseInput />
           <ViewCount />
         </div>
