@@ -60,12 +60,3 @@ html {
 .tabular-nums {
   font-variant-numeric: tabular-nums;
 }
-
-#duration {
-  display: flex;
-  justify-content: space-between;
-}
-
-#duration input {
-  width: 6ch;
-}

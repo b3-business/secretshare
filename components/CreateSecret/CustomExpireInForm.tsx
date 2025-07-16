@@ -26,10 +26,13 @@ export default function CustomExpireInForm() {
           <div>
             {/* placeholder div to keep the first grid column empty */}
           </div>
-          <form id="duration" class="flex flex-row gap-2 justify-center">
+          <form
+            id="duration"
+            class="flex flex-row gap-4 justify-center-safe"
+          >
             <label for="h">
               <input
-                class="p-2 border-2 border-gray-500 rounded"
+                class="p-2 border-2 border-gray-500 rounded w-[6ch]"
                 id="h"
                 name="h"
                 type="number"
@@ -43,7 +46,7 @@ export default function CustomExpireInForm() {
 
             <label for="m">
               <input
-                class="p-2 border-2 border-gray-500 rounded"
+                class="p-2 border-2 border-gray-500 rounded w-[6ch]"
                 id="m"
                 name="m"
                 type="number"
