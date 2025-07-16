@@ -1,6 +1,7 @@
 import { lastMessage, RichMessage } from "@/src/utils/log.ts";
 import CardMsg from "./messages/CardMsg.tsx";
 import ErrorCardMsg from "./messages/ErrorCardMsg.tsx";
+import { twJoin } from "tailwind-merge";
 
 function renderMessage(message: RichMessage | undefined) {
   if (!message) {
@@ -32,7 +33,7 @@ function renderMessage(message: RichMessage | undefined) {
       return (
         <CardMsg header={message.header} extraInfo={message.extraInfo}>
           <a
-            class="text-primary-dark text-lg"
+            class="text-primary-dark text-lg wrap-anywhere"
             href={message.secretLink}
             target="_blank"
           >
@@ -43,6 +44,12 @@ function renderMessage(message: RichMessage | undefined) {
   }
 }
 
-export default function Log() {
-  return <div>{renderMessage(lastMessage.value)}</div>;
+export default function Log(props: { class?: string }) {
+  const classes = twJoin("max-w-[90%]", props.class);
+
+  return (
+    <div class={classes}>
+      {renderMessage(lastMessage.value)}
+    </div>
+  );
 }
