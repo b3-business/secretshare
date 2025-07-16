@@ -9,6 +9,7 @@ export default function ViewCountInput() {
       <input
         type="checkbox"
         name="useViewCount"
+        id="useViewCount"
         checked={useViewCount.value}
         onChange={() => {
           useViewCount.value = !useViewCount.value;

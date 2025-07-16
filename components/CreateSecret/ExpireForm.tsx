@@ -8,6 +8,7 @@ export default function ExpireForm() {
       <input
         type="checkbox"
         name="customExpireIn"
+        id="customExpireIn"
         checked={isCustomExpireIn.value}
         onChange={() => {
           isCustomExpireIn.value = !isCustomExpireIn.value;

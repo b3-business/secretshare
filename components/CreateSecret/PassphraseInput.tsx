@@ -8,6 +8,7 @@ export default function PassphraseInput() {
       <input
         type="checkbox"
         name="usePassphrase"
+        id="usePassphrase"
         checked={usePassphrase.value}
         onChange={() => {
           usePassphrase.value = !usePassphrase.value;
