@@ -24,7 +24,7 @@ function renderMessage(message: RichMessage | undefined) {
     case "secretFetch":
       return (
         <CardMsg header="Secret Data" extraInfo={message.extraInfo}>
-          <pre class="monospace whitespace-pre-wrap wrap-anywhere bg-gray-100 p-2 rounded-md overflow-auto max-w-[90dvw] min-w-md">
+          <pre class="monospace whitespace-pre-wrap wrap-anywhere bg-gray-100 p-2 rounded-md overflow-auto max-w-[90dvw] w-full">
             {message.secret}
           </pre>
         </CardMsg>
@@ -45,7 +45,7 @@ function renderMessage(message: RichMessage | undefined) {
 }
 
 export default function Log(props: { class?: string }) {
-  const classes = twJoin("max-w-[90%] md:max-w-2xl", props.class);
+  const classes = twJoin("w-full max-w-[90%] md:max-w-2xl", props.class);
 
   return (
     <div class={classes}>
