@@ -15,8 +15,12 @@ export default function ViewCountInput() {
           useViewCount.value = !useViewCount.value;
         }}
       />
-      <label for="useViewCount">
-        Anzeigelimit ändern <br /> (default: 1)
+      <label
+        for="useViewCount"
+        class="flex flex-col min-[360px]:flex-row min-[360px]:gap-1"
+      >
+        <span>Anzeigelimit ändern</span>
+        <span>(default: 1)</span>
       </label>
       {useViewCount.value && (
         <>

@@ -14,8 +14,12 @@ export default function ExpireForm() {
           isCustomExpireIn.value = !isCustomExpireIn.value;
         }}
       />
-      <label class="mt-4" for="customExpireIn">
-        Eigene Ablaufzeit <br /> (default: 1 Tag)
+      <label
+        for="customExpireIn"
+        class="flex flex-col min-[360px]:flex-row min-[360px]:gap-1"
+      >
+        <span>Eigene Ablaufzeit</span>
+        <span>(default: 1 Tag)</span>
       </label>
       {isCustomExpireIn.value && (
         <>

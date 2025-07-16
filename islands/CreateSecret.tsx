@@ -28,7 +28,7 @@ export default function CreateSecret() {
           placeholder="Passwort, Token oder andere Information..."
         />
 
-        <div class="grid grid-cols-[min-content_1fr] gap-4 items-center justify-center w-[90%]">
+        <div class="grid grid-cols-[min-content_1fr] gap-4 items-center justify-center w-[90%] mt-4">
           <ExpireForm />
           <PassphraseInput />
           <ViewCount />

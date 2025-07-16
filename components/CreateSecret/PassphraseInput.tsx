@@ -15,8 +15,7 @@ export default function PassphraseInput() {
         }}
       />
       <label for="usePassphrase">
-        Eigene Passphrase verwenden um das Secret zu verschlüsseln <br />
-        (optional)
+        <span>Eigene Passphrase für Verschlüsselung verwenden (optional)</span>
       </label>
       {usePassphrase.value && (
         <>
