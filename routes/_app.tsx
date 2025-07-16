@@ -9,7 +9,7 @@ export default function App({ Component }: PageProps) {
         <link rel="stylesheet" href="/styles.css" />
         <link rel="stylesheet" href="/api/res/tailwind.css" />
       </head>
-      <body class="min-w-[220px]">
+      <body class="min-w-[220px] mb-8">
         <Component />
       </body>
     </html>
