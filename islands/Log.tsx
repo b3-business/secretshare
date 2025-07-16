@@ -45,7 +45,7 @@ function renderMessage(message: RichMessage | undefined) {
 }
 
 export default function Log(props: { class?: string }) {
-  const classes = twJoin("max-w-[90%]", props.class);
+  const classes = twJoin("max-w-[90%] md:max-w-2xl", props.class);
 
   return (
     <div class={classes}>
