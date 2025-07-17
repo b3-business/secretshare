@@ -57,3 +57,7 @@ html {
 .tabular-nums {
   font-variant-numeric: tabular-nums;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
