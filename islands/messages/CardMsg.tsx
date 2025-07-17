@@ -8,7 +8,7 @@ export default function CardMsg(
   },
 ) {
   return (
-    <div class="flex flex-col items-start justify-center gap-2 shadow-lg rounded-lg p-4 max-w-2xl border-[1px] border-gray-200">
+    <div class="flex flex-col items-start justify-center gap-2 rounded-lg p-4 border-2 border-gray-300">
       {props.header && <h3 class="text-lg font-bold">{props.header}</h3>}
       {props.extraInfo && <p>{props.extraInfo}</p>}
       {props.children}

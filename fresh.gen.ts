@@ -4,6 +4,7 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
+import * as $_layout from "./routes/_layout.tsx";
 import * as $api_create from "./routes/api/create.ts";
 import * as $api_res_tailwind_css from "./routes/api/res/tailwind.css.ts";
 import * as $api_secret_uuid_ from "./routes/api/secret/[uuid].ts";
@@ -15,12 +16,14 @@ import * as $FetchSecret from "./islands/FetchSecret.tsx";
 import * as $Log from "./islands/Log.tsx";
 import * as $messages_CardMsg from "./islands/messages/CardMsg.tsx";
 import * as $messages_ErrorCardMsg from "./islands/messages/ErrorCardMsg.tsx";
+import * as $ui_Card from "./islands/ui/Card.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
+    "./routes/_layout.tsx": $_layout,
     "./routes/api/create.ts": $api_create,
     "./routes/api/res/tailwind.css.ts": $api_res_tailwind_css,
     "./routes/api/secret/[uuid].ts": $api_secret_uuid_,
@@ -34,6 +37,7 @@ const manifest = {
     "./islands/Log.tsx": $Log,
     "./islands/messages/CardMsg.tsx": $messages_CardMsg,
     "./islands/messages/ErrorCardMsg.tsx": $messages_ErrorCardMsg,
+    "./islands/ui/Card.tsx": $ui_Card,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

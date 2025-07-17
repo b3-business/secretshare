@@ -1,5 +1,4 @@
 import { type PageProps } from "$fresh/server.ts";
-import Header from "@/components/Header.tsx";
 export default function App({ Component }: PageProps) {
   return (
     <html lang="de">
@@ -10,8 +9,7 @@ export default function App({ Component }: PageProps) {
         <link rel="stylesheet" href="/styles.css" />
         <link rel="stylesheet" href="/api/res/tailwind.css" />
       </head>
-      <body>
-        <Header />
+      <body class="min-w-[220px] mb-8">
         <Component />
       </body>
     </html>

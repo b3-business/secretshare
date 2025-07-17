@@ -1,18 +1,18 @@
 import onSubmit from "@/src/formHandler/create.ts";
-import ExpireForm from "@/components/CreateSecret/ExpireForm.tsx";
+import CustomExpireInForm from "../components/CreateSecret/CustomExpireInForm.tsx";
 import PassphraseInput from "@/components/CreateSecret/PassphraseInput.tsx";
-import ViewCount from "@/components/CreateSecret/ViewCount.tsx";
+import ViewCountLimitInput from "../components/CreateSecret/ViewCountLimitInput.tsx";
 
 export default function CreateSecret() {
   return (
-    <section>
-      <h2 class="my-8 text-2xl font-bold items-center flex flex-col">
+    <section class="w-full max-w-[90%] md:max-w-2xl">
+      <h2 class="my-4 text-2xl font-bold items-center flex flex-col">
         Erstelle ein neues Secret
       </h2>
       <form
         name="createSecret"
         method="post"
-        class="flex flex-col items-center"
+        class="flex flex-col items-stretch gap-4"
         onSubmit={onSubmit}
         autocomplete="off"
       >
@@ -23,18 +23,20 @@ export default function CreateSecret() {
           style="display:none;"
         />
         <textarea
-          rows={10}
-          cols={60}
           name="secret"
-          class="w-full p-2 border-2 border-gray-500 rounded"
+          class="min-h-40 md:min-h-60 p-2 border-2 border-gray-500 rounded"
           placeholder="Passwort, Token oder andere Information..."
         />
 
-        <ExpireForm />
-        <PassphraseInput />
-        <ViewCount />
+        <div class="grid grid-cols-[min-content_1fr] gap-4 items-center">
+          <CustomExpireInForm />
+          <PassphraseInput />
+          <ViewCountLimitInput />
+        </div>
 
-        <button class="p-2" type="submit">Anlegen</button>
+        <button class="p-2" type="submit">
+          Anlegen
+        </button>
       </form>
     </section>
   );
