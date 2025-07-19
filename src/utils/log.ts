@@ -4,10 +4,12 @@ export type RichMessage =
   | {
     type: "string";
     text: string;
+    extraInfo?: string;
   }
   | {
     type: "error";
     text: string;
+    extraInfo?: string;
   }
   | {
     type: "secretFetch";

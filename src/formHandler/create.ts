@@ -97,6 +97,7 @@ export default async function onSubmit(
     lastMessage.value = {
       type: "error",
       text: "Datentypen konnten nicht validiert werden. Bitte versuchen Sie es erneut.",
+      extraInfo: `Response: ${JSON.stringify(data)}`,
     };
     console.error("Response data:", data);
   }

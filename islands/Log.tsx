@@ -17,7 +17,7 @@ function renderMessage(message: RichMessage | undefined) {
       );
     case "error":
       return (
-        <ErrorCardMsg header="Error">
+        <ErrorCardMsg header="Error" extraInfo={message.extraInfo}>
           <span>{message.text}</span>
         </ErrorCardMsg>
       );
