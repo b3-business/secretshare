@@ -1,63 +1,9 @@
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-button, [role="button"] {
-  cursor: pointer;
-}
-
-button {
-  background-color: transparent;
-  padding: 0.5rem;
-  border: 1px solid black;
-  border-radius: 4px;
-  font-size: 1em;
-}
-
-textarea {
-  resize: both;
-}
-
-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
-  font-size: 1em;
-}
-img,
-svg {
-  display: block;
-}
-img,
-video {
-  max-width: 100%;
-  height: auto;
-}
-
-html {
-  line-height: 1.5;
-  -webkit-text-size-adjust: 100%;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
-.transition-colors {
-  transition-property: background-color, border-color, color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-.tabular-nums {
-  font-variant-numeric: tabular-nums;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@theme {
+    --color-primary: oklch(0.7751 0.127965 240.0314);
+    --color-primary-dark: oklch(0.5327 0.1152 242.02);
+
+  }
