@@ -24,7 +24,7 @@ function renderMessage(message: RichMessage | undefined) {
     case "secretFetch":
       return (
         <CardMsg header="Secret Data" extraInfo={message.extraInfo}>
-          <pre class="monospace whitespace-pre-wrap wrap-anywhere bg-gray-100 p-2 rounded-md overflow-auto max-w-[90dvw] w-full">
+          <pre class="monospace whitespace-pre-wrap break-words bg-gray-100 p-2 rounded-md overflow-auto w-full">
             {message.secret}
           </pre>
         </CardMsg>

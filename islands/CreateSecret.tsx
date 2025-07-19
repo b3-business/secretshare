@@ -1,7 +1,7 @@
 import onSubmit from "@/src/formHandler/create.ts";
-import CustomExpireInForm from "../components/CreateSecret/CustomExpireInForm.tsx";
+import CustomExpireInForm from "@/components/CreateSecret/CustomExpireInForm.tsx";
 import PassphraseInput from "@/components/CreateSecret/PassphraseInput.tsx";
-import ViewCountLimitInput from "../components/CreateSecret/ViewCountLimitInput.tsx";
+import ViewCountLimitInput from "@/components/CreateSecret/ViewCountLimitInput.tsx";
 
 export default function CreateSecret() {
   return (
@@ -34,7 +34,7 @@ export default function CreateSecret() {
           <ViewCountLimitInput />
         </div>
 
-        <button class="p-2" type="submit">
+        <button class="p-2 rounded-lg bg-primary" type="submit">
           Anlegen
         </button>
       </form>

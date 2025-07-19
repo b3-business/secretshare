@@ -39,7 +39,7 @@ export default function FetchSecret(
         name="fetchSecretButton"
         type="submit"
         disabled={fetched.value}
-        class="p-2"
+        class={"p-2 rounded-lg" + (fetched.value ? " bg-slate-400 cursor-not-allowed" : " bg-primary")}
       >
         Abrufen
       </button>
