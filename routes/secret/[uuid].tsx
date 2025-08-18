@@ -4,7 +4,6 @@ import Log from "@/islands/Log.tsx";
 
 export default function UUID(props: PageProps) {
   const { uuid } = props.params;
-  const encryptionKey = atob(props.url.searchParams.get("encryptionKey") || "");
   return (
     <main class="flex flex-col items-center justify-center w-full max-w-[90%] md:max-w-2xl gap-4 mx-auto">
       <h2 class="mt-6 text-2xl font-bold items-center flex flex-col">
@@ -17,7 +16,7 @@ export default function UUID(props: PageProps) {
         <strong class="underline underline-offset-2">nicht</strong>{" "}
         mehr abrufbar!
       </p>
-      <FetchSecret uuid={uuid} encryptionKey={encryptionKey} />
+      <FetchSecret uuid={uuid}/>
       <Log />
     </main>
   );

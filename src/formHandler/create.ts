@@ -82,7 +82,7 @@ export default async function onSubmit(
   );
   if (data && data.link) {
     const secretUrl = `${location.origin}/secret/${data.link}${
-      generatedKey ? `?encryptionKey=${btoa(encryptionKey)}` : ""
+      generatedKey ? `#&encryptionKey=${btoa(encryptionKey)}` : ""
     }`;
     // copy url to clipboard
     navigator.clipboard.writeText(secretUrl);

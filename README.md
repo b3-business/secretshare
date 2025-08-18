@@ -9,6 +9,10 @@
 - Share secrets/passwords via a simple web interface
 - configureable expiration time for each secret
 
+- secrets are encrypted using AES-GCM 256-bit
+- secrets are encrypted and decrypted in the browser
+- secrets are stored in memory only, nothing is stored on the server
+
 ## Info
 
 SecretShare is a simple web application to share secrets or passwords with others.
@@ -56,7 +60,9 @@ deno compile -A --include deno.json --include _fresh --include static --target x
 
 ### Debug Secret
 
-Use this debug seret when developing locally.
+Use this debug secret when developing locally.
 ```
-/secret/0000?encryptionKey=OTBXU3IzWHFIN1B1QXNoNi94aE42dz09
+/secret/0000#&encryptionKey=OTBXU3IzWHFIN1B1QXNoNi94aE42dz09
 ```
+[http://localhost:8000/secret/0000#&encryptionKey=OTBXU3IzWHFIN1B1QXNoNi94aE42dz09](http://localhost:8000/secret/0000#&encryptionKey=OTBXU3IzWHFIN1B1QXNoNi94aE42dz09)
+

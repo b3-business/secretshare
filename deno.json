@@ -10,9 +10,9 @@
     "preview": "deno run -A main.ts",
     "update": "deno run -A -r https://fresh.deno.dev/update .",
     "compile": "deno task build && deno task genWin && deno task genLinux && deno task genMac",
-    "genWin": "deno compile -A --include _fresh --include static --include deno.json main.ts --target x86_64-pc-windows-msvc --output secretshare_win.exe",
-    "genLinux": "deno compile -A --include deno.json --include _fresh --include static --target x86_64-unknown-linux-gnu main.ts --output secretshare_linux",
-    "genMac": "deno compile -A --include deno.json --include _fresh --include static --target aarch64-apple-darwin main.ts --output secretshare_osx",
+    "genWin": "deno compile -A --output secretshare_win.exe --include _fresh --include static --include deno.json main.ts --target x86_64-pc-windows-msvc ",
+    "genLinux": "deno compile -A --output secretshare_linux --include deno.json --include _fresh --include static --target x86_64-unknown-linux-gnu main.ts ",
+    "genMac": "deno compile -A --output secretshare_osx --include deno.json --include _fresh --include static --target aarch64-apple-darwin main.ts",
     "compileMac": "deno task build && deno task genMac",
     "compileLinux": "deno task build && deno task genLinux",
     "compileWin": "deno task build && deno task genWin"
@@ -22,7 +22,6 @@
   "nodeModulesDir": "auto",
   "imports": {
     "@/": "./",
-    "@bjesuiter/deno-tailwindcss-iso": "jsr:@bjesuiter/deno-tailwindcss-iso@1.0.5-poc.1",
     "$fresh/": "https://deno.land/x/fresh@1.7.3/",
     "@std/dotenv": "jsr:@std/dotenv@^0.225.3",
     "@std/fs": "jsr:@std/fs@^1.0.19",
