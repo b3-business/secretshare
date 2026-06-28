@@ -1,4 +1,7 @@
+import { IS_DENO_DEPLOY } from "@/src/utils/launch.ts";
+
 // Exports "secrets" object that stores secrets and provides methods to add and get secrets. Will not return secrets that have expired.
+const secretKv = await Deno.openKv(IS_DENO_DEPLOY ? undefined : ":memory:");
 
 type Secret = {
   data: string;
@@ -21,9 +24,9 @@ const EXPIRE_DURATION_DAY = 1000 * 60 * 60 * 24;
 const EXPIRE_DURATION_WEEK = EXPIRE_DURATION_DAY * 7;
 
 class Secrets {
-  secrets: Map<UUID, Secret>;
+  secrets: Deno.Kv;
   constructor() {
-    this.secrets = new Map<UUID, Secret>();
+    this.secrets = secretKv;
 
     // http://localhost:8000/secret/0000?encryptionKey=OTBXU3IzWHFIN1B1QXNoNi94aE42dz09
     // add dummy secret for debugging
@@ -33,41 +36,54 @@ class Secrets {
     const { encryptedSecret, iv } = JSON.parse(
       jsonDummy,
     );
-    this.secrets.set("0000",{
+
+    const dummySecret = {
       data: encryptedSecret,
       expiresAt: Date.now() + EXPIRE_DURATION_WEEK * 10000,
       viewCount: 0,
       allowedViews: 1_000_000_000_000,
       iv: iv,
+    };
+
+    // no await here, its the constructor. its the debugging secret, its fine. async constructor is not allowed anyway.
+    this.secrets.set(["secrets", "0000"], dummySecret).then((res)=> {
+      console.log(`Dummy secret added or replaced for debugging: ${res.ok}`);
     });
   }
 
-  add(
+  async add(
     { secret, expireIn, allowedViews = 1, iv }: SecretGenerationOptions,
   ) {
     const uuid = crypto.randomUUID();
     if (expireIn < 0) {
       expireIn = EXPIRE_DURATION_DAY;
     }
-    this.secrets.set(uuid, {
+
+    const secretObj: Secret = {
       data: secret,
       expiresAt: Date.now() + expireIn,
       viewCount: 0,
       allowedViews: allowedViews,
       iv: iv,
-    });
+    };
+
+    await this.secrets.atomic()
+      .set(["secrets", uuid], secretObj)
+      .set(["secretByExpireTimestamp", secretObj.expiresAt], uuid)
+      .commit();
     return uuid;
   }
 
-  get(uuid: UUID) {
-    const secret = this.secrets.get(uuid);
+  async get(uuid: UUID) {
+    const { value: secret } = await this.secrets.get<Secret>(["secrets", uuid]);
     if (!secret) {
       console.log(`No secret found with uuid: ${uuid}`);
       return null;
     }
     if (secret.expiresAt < Date.now()) {
       console.log(`Secret with uuid: ${uuid} has expired and got deleted.`);
-      this.secrets.delete(uuid);
+      this.secrets.delete(["secrets", uuid]);
+      this.secrets.delete(["secretByExpireTimestamp", secret.expiresAt]);
       return null;
     }
     
@@ -77,7 +93,8 @@ class Secrets {
       console.log(
         `Secret with uuid: ${uuid} has reached the view limit and got deleted.`,
       );
-      this.secrets.delete(uuid);
+      this.secrets.delete(["secrets", uuid]);
+      this.secrets.delete(["secretByExpireTimestamp", secret.expiresAt]);
     }
     console.log(`Secret with uuid: ${uuid} fetched successfully. Views left: ${viewsLeft}`);
     

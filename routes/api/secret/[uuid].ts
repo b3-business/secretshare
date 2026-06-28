@@ -2,7 +2,7 @@ import { FreshContext, Handlers } from "$fresh/server.ts";
 import { secrets } from "@/src/secretStorage/secrets.ts";
 
 export const handler: Handlers = {
-  GET(req: Request, _ctx: FreshContext) {
+  async GET(req: Request, _ctx: FreshContext) {
     const { uuid } = _ctx.params;
 
     console.log(`Fetching secret with uuid: ${uuid}`);
@@ -10,10 +10,14 @@ export const handler: Handlers = {
       console.log("No uuid provided");
       return new Response(null, { status: 400 });
     }
-    const secret = secrets.get(uuid);
+    const secret = await secrets.get(uuid);
     if (!secret) {
       return new Response(null, { status: 404 });
     }
-    return new Response(JSON.stringify(secret));
+    return new Response(JSON.stringify(secret), {
+      headers: { "Content-Type": "application/json" },
+      status: 200,
+      statusText: "OK",
+    });
   },
 };

@@ -64,5 +64,6 @@ Use this debug secret when developing locally.
 ```
 /secret/0000#&encryptionKey=OTBXU3IzWHFIN1B1QXNoNi94aE42dz09
 ```
-[http://localhost:8000/secret/0000#&encryptionKey=OTBXU3IzWHFIN1B1QXNoNi94aE42dz09](http://localhost:8000/secret/0000#&encryptionKey=OTBXU3IzWHFIN1B1QXNoNi94aE42dz09)
+[Live Demo](https://secretshare.ebiko.me/secret/0000#&encryptionKey=OTBXU3IzWHFIN1B1QXNoNi94aE42dz09)
 
+Warning: This Live demo is only short lived and is load balanced across multiple instances, thus the secret may not be available at all times. It is only intended for testing and development purposes.

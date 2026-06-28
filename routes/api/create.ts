@@ -42,7 +42,7 @@ export const handler: Handlers = {
       });
     }
 
-    const uuid = secrets.add({
+    const uuid = await secrets.add({
       secret: encryptedSecret,
       expireIn,
       allowedViews,
