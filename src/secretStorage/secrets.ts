@@ -91,6 +91,10 @@ class Secrets {
     }
     
     const viewsLeft = secret.allowedViews - ++secret.viewCount;
+    if (viewsLeft < 0) {
+      console.log(`Secret ${uuid} should have already been deleted. This may happen due to deno kv, hard block.`);
+      return null;
+    }
     
     if (viewsLeft <= 0) {
       console.log(
@@ -98,8 +102,10 @@ class Secrets {
       );
       await this.secrets.delete(["secrets", uuid]);
       await this.secrets.delete(["secretByExpireTimestamp", secret.expiresAt]);
-      return null;
+      // we dont return here. We still return the secret even if it has reached the view limit, but we delete it from storage, so it cannot be fetched again. 
     }
+
+
 
     console.log(`Secret with uuid: ${uuid} fetched successfully. Views left: ${viewsLeft}`);
 
