@@ -85,7 +85,7 @@ class Secrets {
     }
     if (secret.expiresAt < Date.now()) {
       console.log(`Secret with uuid: ${uuid} has expired and got deleted.`);
-      this.secrets.delete(["secrets", uuid]);
+      await this.secrets.delete(["secrets", uuid]);
       this.secrets.delete(["secretByExpireTimestamp", secret.expiresAt]);
       return null;
     }
@@ -96,9 +96,11 @@ class Secrets {
       console.log(
         `Secret with uuid: ${uuid} has reached the view limit and got deleted.`,
       );
-      this.secrets.delete(["secrets", uuid]);
-      this.secrets.delete(["secretByExpireTimestamp", secret.expiresAt]);
+      await this.secrets.delete(["secrets", uuid]);
+      await this.secrets.delete(["secretByExpireTimestamp", secret.expiresAt]);
+      return null;
     }
+
     console.log(`Secret with uuid: ${uuid} fetched successfully. Views left: ${viewsLeft}`);
 
     await this.secrets.set(["secrets", uuid], secret); // update viewCount
