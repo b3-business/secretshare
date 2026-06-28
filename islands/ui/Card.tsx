@@ -8,7 +8,7 @@ export default function Card(
   },
 ) {
   const classes = twJoin(
-    "shadow-lg rounded-lg  max-w-2xl border-[1px] border-gray-200",
+    "shadow-lg rounded-lg  max-w-4xl border-[1px] border-gray-200",
     props.class,
   );
   return (

@@ -8,7 +8,7 @@ export default function Layout({ Component, state }: PageProps) {
     <div>
       <Header />
       <Component />
-      <footer class="absolute bottom-0 w-full text-center text-sm text-gray-500 p-2">
+      <footer class="absolute top-0 right-0 text-sm text-gray-700 p-2">
         Server started at {new Date(START_TIME).toLocaleString()}{IS_DENO_DEPLOY ? ` - DenoDeployID: ${DENO_DEPLOYMENT_ID}` : ""}
       </footer>
     </div>

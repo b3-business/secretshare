@@ -69,8 +69,11 @@ class Secrets {
 
     await this.secrets.atomic()
       .set(["secrets", uuid], secretObj)
-      .set(["secretByExpireTimestamp", secretObj.expiresAt], uuid)
+      .set(["secretByExpireTimestamp", secretObj.expiresAt], ["secrets", uuid])
       .commit();
+
+    this.deleteExpiredSecrets()
+    
     return uuid;
   }
 
@@ -97,12 +100,36 @@ class Secrets {
       this.secrets.delete(["secretByExpireTimestamp", secret.expiresAt]);
     }
     console.log(`Secret with uuid: ${uuid} fetched successfully. Views left: ${viewsLeft}`);
+
+    await this.secrets.set(["secrets", uuid], secret); // update viewCount
+
+    this.deleteExpiredSecrets()
     
     return {
       secret: secret.data,
       iv: secret.iv,
       viewsLeft: viewsLeft,
     };
+  }
+  async deleteExpiredSecrets() {
+    const now = Date.now();
+    const expiredSecrets = this.secrets.list<Deno.KvKey>({
+      prefix: ["secretByExpireTimestamp"],
+      end: ["secretByExpireTimestamp", now],
+      });
+    for await (const { key, value: secretsKey } of expiredSecrets) {
+      if (secretsKey) {
+        const res = await this.secrets.atomic()
+          .delete(secretsKey)
+          .delete(key)
+          .commit();
+        if (!res.ok) {
+          console.error(`Failed to delete expired secret with uuid: ${secretsKey}`);
+        } else {
+          console.log(`Deleted expired secret with uuid: ${secretsKey}`);
+        }
+      }
+    }
   }
 }
 

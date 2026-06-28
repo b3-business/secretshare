@@ -67,6 +67,15 @@ export default async function onSubmit(
 
   const allowedViews = Number(formData.get("viewCount") || 1);
 
+  if (encryptedSecret.length > 65000) {
+    // 64kb limit for kv value == 65536 bytes, but metadata is also stored, so we use 65000 as a safe limit
+    lastMessage.value = {
+      type: "error",
+      text: "Secret ist zu groß! Bitte kürzen Sie es auf etwa 48kb.",
+    };
+    return;
+  }
+
   const response = await fetch("/api/create", {
     method: "POST",
     headers: {

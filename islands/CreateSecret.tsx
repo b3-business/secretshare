@@ -5,7 +5,7 @@ import ViewCountLimitInput from "@/components/CreateSecret/ViewCountLimitInput.t
 
 export default function CreateSecret() {
   return (
-    <section class="w-full max-w-[90%] md:max-w-2xl">
+    <section class="w-full max-w-[90%] md:max-w-4xl">
       <h2 class="my-4 text-2xl font-bold items-center flex flex-col">
         Erstelle ein neues Secret
       </h2>
@@ -27,6 +27,7 @@ export default function CreateSecret() {
           class="min-h-40 md:min-h-60 p-2 border-2 border-gray-500 rounded"
           placeholder="Passwort, Token oder andere Information..."
         />
+        <span class="text-sm text-gray-500">Der genutze Speicher pro Secret beträgt etwa 64kb. Da das secret beim anlegen verschlüsselt wird, kann die maximale Länge variieren und kleiner ausfallen. (etwa 48kb)</span>
 
         <div class="grid grid-cols-[min-content_1fr] gap-4 items-center">
           <CustomExpireInForm />

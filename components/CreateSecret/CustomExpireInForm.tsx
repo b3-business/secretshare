@@ -32,12 +32,11 @@ export default function CustomExpireInForm() {
           >
             <label for="h">
               <input
-                class="p-2 border-2 border-gray-500 rounded w-[6ch]"
+                class="p-2 border-2 border-gray-500 rounded min-w-[7ch] w-fit"
                 id="h"
                 name="h"
                 type="number"
                 min="0"
-                max="999"
                 value={0}
                 onWheel={scrollNumberInputValue}
               />
@@ -46,7 +45,7 @@ export default function CustomExpireInForm() {
 
             <label for="m">
               <input
-                class="p-2 border-2 border-gray-500 rounded w-[6ch]"
+                class="p-2 border-2 border-gray-500 rounded min-w-[7ch] w-fit"
                 id="m"
                 name="m"
                 type="number"
